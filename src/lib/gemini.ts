@@ -63,6 +63,9 @@ export async function generateReply(
     },
   });
 
-  const result = await chat.sendMessage(userMessage);
+const langInstruction = lang === 'en'
+    ? '[Reply in English only.]'
+    : '[केवल हिंदी में जवाब दें।]';
+  const result = await chat.sendMessage(`${langInstruction}\n\n${userMessage}`);
   return result.response.text();
 }

@@ -19,36 +19,23 @@ export default function LoginPage() {
     e.preventDefault();
     setError('');
     setLoading(true);
-
     const supabase = createClient();
-    const { data, error: authError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    const { data, error: authError } = await supabase.auth.signInWithPassword({ email, password });
 
     if (authError) {
-      if (authError.message.toLowerCase().includes('email not confirmed')) {
-        setError(t('errorEmailNotVerified'));
-      } else if (authError.message.toLowerCase().includes('invalid')) {
-        setError(t('errorInvalidLogin'));
-      } else {
-        setError(t('errorGeneric'));
-      }
+      const msg = authError.message.toLowerCase();
+      if (msg.includes('email not confirmed')) setError(t('errorEmailNotVerified'));
+      else if (msg.includes('invalid')) setError(t('errorInvalidLogin'));
+      else setError(t('errorGeneric'));
       setLoading(false);
       return;
     }
-
-    if (data.user) {
-      router.push('/chat');
-      router.refresh();
-    }
+    if (data.user) { router.push('/chat'); router.refresh(); }
   };
 
   return (
     <div className="page">
-      <div className="container">
-        <Header />
-      </div>
+      <div className="container"><Header /></div>
       <div className="center">
         <div className="card">
           <h2 className="text-center">{t('login')}</h2>
@@ -56,27 +43,14 @@ export default function LoginPage() {
           <form onSubmit={handleLogin} className="mt-3">
             <div className="form-group">
               <label className="label" htmlFor="email">{t('email')}</label>
-              <input
-                id="email"
-                type="email"
-                className="input"
-                placeholder={t('emailPlaceholder')}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
+              <input id="email" type="email" className="input" placeholder={t('emailPlaceholder')} value={email} onChange={(e) => setEmail(e.target.value)} required />
             </div>
             <div className="form-group">
               <label className="label" htmlFor="password">{t('password')}</label>
-              <input
-                id="password"
-                type="password"
-                className="input"
-                placeholder={t('passwordPlaceholder')}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+              <input id="password" type="password" className="input" placeholder={t('passwordPlaceholder')} value={password} onChange={(e) => setPassword(e.target.value)} required />
+            </div>
+            <div className="text-center mt-2" style={{ marginBottom: '1rem' }}>
+              <Link href="/forgot-password" className="link-plain">{t('forgotPassword')}</Link>
             </div>
             <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
               {loading ? t('loading') : t('login')}
