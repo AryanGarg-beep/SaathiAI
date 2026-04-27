@@ -255,6 +255,9 @@ export default function ChatPage() {
               </button>
             )}
             <LanguageToggle />
+            <a href="/help.html" target="_blank" rel="noopener noreferrer" className="lang-toggle" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }} aria-label="Help">
+              ?
+            </a>
             <button onClick={handleLogout} className="btn btn-secondary btn-small">{t('logout')}</button>
           </div>
         </div>

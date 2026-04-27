@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saathi AI — Help / सहायता</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #fdf6ec;
+    --surface: #ffffff;
+    --surface-alt: #fbeedc;
+    --text: #2a1a0a;
+    --text-soft: #5a4a38;
+    --primary: #b8541a;
+    --border: #e6d5b8;
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 16px;
+    padding: 24px 16px;
+  }
+
+  .container { max-width: 720px; margin: 0 auto; }
+
+  .back-link {
+    display: inline-block;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 24px;
+    font-size: 15px;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  h1 {
+    font-size: 28px;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+  h1 .hi { font-family: 'Noto Sans Devanagari', sans-serif; }
+
+  .subtitle { color: var(--text-soft); margin-bottom: 32px; font-size: 15px; }
+
+  .section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .section h2 {
+    font-size: 18px;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+  .section h2.hi { font-family: 'Noto Sans Devanagari', sans-serif; font-weight: 700; }
+
+  .section p, .section li {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .hi { font-family: 'Noto Sans Devanagari', sans-serif; }
+
+  .section ol, .section ul { margin-left: 20px; margin-bottom: 12px; }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 16px 0;
+  }
+
+  .icon-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface-alt);
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .tip {
+    background: var(--surface-alt);
+    border-left: 3px solid var(--primary);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin-top: 12px;
+    font-size: 14px;
+  }
+  .tip strong { color: var(--primary); }
+
+  footer {
+    text-align: center;
+    color: var(--text-soft);
+    font-size: 13px;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <a href="/chat" class="back-link">← Back to Saathi / साथी पर वापस जाएं</a>
+
+  <h1>Help <span class="hi">/ सहायता</span></h1>
+  <p class="subtitle">A simple guide to all the buttons and features.<br>
+  <span class="hi">सभी बटन और सुविधाओं की सरल मार्गदर्शिका।</span></p>
+
+  <!-- SIDEBAR -->
+  <div class="section">
+    <h2>Sidebar — Conversation List</h2>
+    <h2 class="hi">साइडबार — बातचीत की सूची</h2>
+    <hr class="divider">
+    <p><span class="icon-label">+ New Chat / + नई बातचीत</span></p>
+    <p>Starts a fresh conversation. Your old conversations are saved below.</p>
+    <p class="hi">एक नई बातचीत शुरू करता है। आपकी पुरानी बातचीत नीचे सहेजी रहती है।</p>
+    <hr class="divider">
+    <p><span class="icon-label">Conversation titles</span></p>
+    <p>Tap any conversation to reopen it and read past messages.</p>
+    <p class="hi">किसी भी बातचीत पर क्लिक करें और पुराने संदेश फिर से पढ़ें।</p>
+    <hr class="divider">
+    <p><span class="icon-label">✕ Delete</span></p>
+    <p>Hover over a conversation and tap ✕ to delete it permanently.</p>
+    <p class="hi">बातचीत पर माउस ले जाएं और ✕ दबाकर उसे हमेशा के लिए हटा दें।</p>
+    <hr class="divider">
+    <p><span class="icon-label">☰ Menu (mobile)</span></p>
+    <p>On phones, tap the ☰ icon at the top-left to open the sidebar.</p>
+    <p class="hi">फोन पर, साइडबार खोलने के लिए ऊपर बाईं ओर ☰ आइकन दबाएं।</p>
+  </div>
+
+  <!-- CHAT AREA -->
+  <div class="section">
+    <h2>Chat Area — Talking to Saathi</h2>
+    <h2 class="hi">चैट क्षेत्र — साथी से बात करना</h2>
+    <hr class="divider">
+    <p><span class="icon-label">Text box at the bottom</span></p>
+    <p>Type your message here and press Send. You can write in Hindi or English.</p>
+    <p class="hi">यहाँ अपना संदेश लिखें और भेजें दबाएं। आप हिंदी या अंग्रेज़ी में लिख सकते हैं।</p>
+    <hr class="divider">
+    <p><span class="icon-label">🎤 Microphone button</span></p>
+    <p>Tap to speak instead of typing. Your words will appear in the text box. Tap again to stop.</p>
+    <p class="hi">लिखने की बजाय बोलने के लिए दबाएं। आपके शब्द टेक्स्ट बॉक्स में दिखेंगे। रोकने के लिए फिर से दबाएं।</p>
+    <div class="tip">
+      <strong>Tip / सुझाव:</strong> Speak slowly and clearly in a quiet room.<br>
+      <span class="hi">शांत कमरे में धीरे और स्पष्ट बोलें।</span>
+    </div>
+    <hr class="divider">
+    <p><span class="icon-label">Send / भेजें</span></p>
+    <p>Sends your message to Saathi. Saathi will reply in a moment.</p>
+    <p class="hi">आपका संदेश साथी को भेजता है। साथी कुछ ही पल में जवाब देगा।</p>
+    <hr class="divider">
+    <p><span class="icon-label">🔊 Speaker icon on messages</span></p>
+    <p>Tap the small speaker icon on any reply to hear Saathi read it aloud.</p>
+    <p class="hi">साथी का जवाब सुनने के लिए किसी भी जवाब पर छोटा स्पीकर आइकन दबाएं।</p>
+  </div>
+
+  <!-- TOP BAR -->
+  <div class="section">
+    <h2>Top Bar — Settings</h2>
+    <h2 class="hi">ऊपरी पट्टी — सेटिंग्स</h2>
+    <hr class="divider">
+    <p><span class="icon-label">🔊 / 🔇 Sound toggle</span></p>
+    <p>Turn automatic voice replies on or off. When on, Saathi reads every reply aloud.</p>
+    <p class="hi">ऑटोमैटिक आवाज़ जवाब चालू या बंद करें। चालू होने पर, साथी हर जवाब ज़ोर से पढ़ता है।</p>
+    <hr class="divider">
+    <p><span class="icon-label">हिंदी / English</span></p>
+    <p>Switch the app language between Hindi and English. Saathi's new replies will follow this choice.</p>
+    <p class="hi">ऐप की भाषा हिंदी और अंग्रेज़ी के बीच बदलें। साथी के नए जवाब इस चुनाव का पालन करेंगे।</p>
+    <hr class="divider">
+    <p><span class="icon-label">Log Out / लॉग आउट</span></p>
+    <p>Signs you out. Your conversations are saved and will be here when you come back.</p>
+    <p class="hi">आपको लॉग आउट करता है। आपकी बातचीत सहेजी रहती है और जब आप वापस आएंगे तो यहाँ होगी।</p>
+    <hr class="divider">
+    <p><span class="icon-label">? Help / सहायता</span></p>
+    <p>Opens this help page.</p>
+    <p class="hi">यह सहायता पृष्ठ खोलता है।</p>
+  </div>
+
+  <!-- ACCOUNT -->
+  <div class="section">
+    <h2>Account — Login & Password</h2>
+    <h2 class="hi">खाता — लॉग इन और पासवर्ड</h2>
+    <hr class="divider">
+    <p><strong>Sign Up:</strong> Create an account with your name, email, and a password (at least 6 characters). You will receive a verification email — click the link to activate your account.</p>
+    <p class="hi"><strong>खाता बनाएं:</strong> अपने नाम, ईमेल और पासवर्ड (कम से कम 6 अक्षर) से खाता बनाएं। आपको एक सत्यापन ईमेल मिलेगा — अपना खाता सक्रिय करने के लिए लिंक पर क्लिक करें।</p>
+    <hr class="divider">
+    <p><strong>Forgot Password:</strong> On the login page, tap "Forgot password?" to receive a password reset link by email.</p>
+    <p class="hi"><strong>पासवर्ड भूल गए:</strong> लॉग इन पृष्ठ पर, ईमेल से पासवर्ड रीसेट लिंक प्राप्त करने के लिए "पासवर्ड भूल गए?" दबाएं।</p>
+    <div class="tip">
+      <strong>Tip / सुझाव:</strong> Write your email and password on paper and keep it safe.<br>
+      <span class="hi">अपना ईमेल और पासवर्ड कागज़ पर लिखें और सुरक्षित रखें।</span>
+    </div>
+  </div>
+
+  <!-- TROUBLESHOOTING -->
+  <div class="section">
+    <h2>If Something Goes Wrong</h2>
+    <h2 class="hi">अगर कुछ गलत हो जाए</h2>
+    <hr class="divider">
+    <p><strong>Saathi is not replying:</strong> Check your internet. Try refreshing the page. Log out and log in again.</p>
+    <p class="hi"><strong>साथी जवाब नहीं दे रहा:</strong> इंटरनेट जांचें। पेज रीफ्रेश करें। लॉग आउट करके फिर लॉग इन करें।</p>
+    <hr class="divider">
+    <p><strong>Microphone not working:</strong> Allow microphone permission in your browser. Make sure no other app is using it.</p>
+    <p class="hi"><strong>माइक्रोफोन काम नहीं कर रहा:</strong> ब्राउज़र में माइक्रोफोन की अनुमति दें। सुनिश्चित करें कि कोई अन्य ऐप इसका उपयोग नहीं कर रहा।</p>
+    <hr class="divider">
+    <p><strong>Can't hear Saathi:</strong> Check your device volume. Make sure Sound is turned on (top of chat).</p>
+    <p class="hi"><strong>साथी सुनाई नहीं दे रहा:</strong> अपने डिवाइस का वॉल्यूम जांचें। सुनिश्चित करें कि आवाज़ चालू है (चैट के ऊपर)।</p>
+    <hr class="divider">
+    <p><strong>Still need help?</strong> Ask a family member or caregiver for support.</p>
+    <p class="hi"><strong>फिर भी मदद चाहिए?</strong> परिवार के किसी सदस्य या देखभाल करने वाले से सहायता मांगें।</p>
+  </div>
+
+  <footer>
+    Saathi AI — साथी AI<br>
+    आपका अपना दोस्त • Your friendly companion
+  </footer>
+
+</div>
+
+</body>
+</html>
