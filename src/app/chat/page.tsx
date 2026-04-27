@@ -30,7 +30,7 @@ export default function ChatPage() {
   const [soundOn, setSoundOn] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [pageReady, setPageReady] = useState(false);
-  const [emergency, setEmergency] = useState<{ level: EmergencyLevel; message: string } | null>(null);
+  const [emergency, setEmergency] = useState<{ level: 'critical' | 'concern'; message: string } | null>(null);
   const [caregiverInfo, setCaregiverInfo] = useState<any>(null);
 
   const endRef = useRef<HTMLDivElement>(null);
