@@ -1,5 +1,7 @@
 'use client';
 
+import { detectEmergency, getEmergencyMessage, EmergencyLevel } from '@/lib/emergency';
+import EmergencyBanner from '@/components/EmergencyBanner';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
@@ -28,6 +30,8 @@ export default function ChatPage() {
   const [soundOn, setSoundOn] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [pageReady, setPageReady] = useState(false);
+  const [emergency, setEmergency] = useState<{ level: EmergencyLevel; message: string } | null>(null);
+  const [caregiverInfo, setCaregiverInfo] = useState<any>(null);
 
   const endRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<any>(null);
@@ -42,6 +46,16 @@ export default function ChatPage() {
     };
     check();
   }, [router]);
+
+  // ── Load caregiver info for emergencies ──
+  useEffect(() => {
+    if (pageReady) {
+      fetch('/api/profile')
+        .then((r) => r.json())
+        .then((d) => setCaregiverInfo(d.profile))
+        .catch(() => {});
+    }
+  }, [pageReady]);
 
   // ── Load conversations ──
   const loadConversations = useCallback(async () => {
@@ -65,7 +79,6 @@ export default function ChatPage() {
         role: m.role,
         text: m.content,
       }));
-      // Add greeting if empty
       if (msgs.length === 0) {
         setMessages([{ role: 'model', text: t('chatGreeting') }]);
       } else {
@@ -159,7 +172,7 @@ export default function ChatPage() {
     if (!recognitionRef.current) return;
     stopSpeaking();
     if (listening) { recognitionRef.current.stop(); setListening(false); }
-    else { setInput(''); try { recognitionRef.current.start(); setListening(true); } catch { setListening(false); } }
+    else { setInput(''); try { recognitionRef.current.start(); setListening(true); } catch(e) { setListening(false); } }
   };
 
   const toggleSound = () => {
@@ -191,8 +204,17 @@ export default function ChatPage() {
     }
 
     const userMsg: Msg = { role: 'user', text: input.trim() };
+
+    // ── Emergency detection (runs BEFORE Gemini) ──
+    const emergencyResult = detectEmergency(userMsg.text);
+    if (emergencyResult.level !== 'none') {
+      setEmergency({
+        level: emergencyResult.level,
+        message: getEmergencyMessage(emergencyResult.level, lang),
+      });
+    }
+
     const newHistory = [...messages.filter(m => !(messages.length === 1 && m.role === 'model' && m.text === t('chatGreeting'))), userMsg];
-    // If the only message was the greeting (not from DB), remove it before showing
     if (messages.length === 1 && messages[0].role === 'model' && messages[0].text === t('chatGreeting')) {
       setMessages([userMsg]);
     } else {
@@ -210,12 +232,11 @@ export default function ChatPage() {
       const data = await res.json();
       const replyText = data.reply || t('errorGeneric');
 
-      // Reload messages from DB to stay in sync
       await loadMessages(convoId!);
-      await loadConversations(); // refresh title if auto-titled
+      await loadConversations();
 
       if (soundOn && data.reply) speak(replyText, lang);
-    } catch {
+    } catch(e) {
       setMessages((prev) => [...prev, { role: 'model', text: t('errorGeneric') }]);
       if (soundOn) speak(t('errorGeneric'), lang);
     } finally {
@@ -255,6 +276,9 @@ export default function ChatPage() {
               </button>
             )}
             <LanguageToggle />
+            <a href="/profile" className="lang-toggle" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }} aria-label="Profile">
+              👤
+            </a>
             <a href="/help.html" target="_blank" rel="noopener noreferrer" className="lang-toggle" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }} aria-label="Help">
               ?
             </a>
@@ -277,6 +301,16 @@ export default function ChatPage() {
             </div>
           ) : (
             <>
+              {/* Emergency banner */}
+              {emergency && (
+                <EmergencyBanner
+                  level={emergency.level}
+                  message={emergency.message}
+                  caregiver={caregiverInfo}
+                  onDismiss={() => setEmergency(null)}
+                />
+              )}
+
               <div className="chat-messages">
                 {messages.map((m, i) => (
                   <div key={i} className={`msg ${m.role === 'user' ? 'msg-user' : 'msg-bot'}`}>
